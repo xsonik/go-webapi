@@ -16,13 +16,13 @@ func GetToken(ctx *gin.Context) {
 	claims := &model.MyClaims{}
 	err := ctx.BindJSON(claims)
 	if err != nil {
-		ctx.String(500, err.Error())
+		ctx.String(400, err.Error())
 		return
 	}
 
 	expiresAt := time.Now().Add(time.Minute * 30)
-	claims.Subject = "webapi"
-	claims.Issuer = "icrew"
+	claims.Subject = "webapi token"
+	claims.Issuer = "webapi"
 	claims.IssuedAt = time.Now().Unix()
 	claims.ExpiresAt = expiresAt.Unix()
 
