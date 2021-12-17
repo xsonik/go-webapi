@@ -10,7 +10,7 @@ func AuthorizedMiddleware() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		_, err := handler.GetUserModel(ctx)
 		if err != nil {
-			ctx.String(200, err.Error())
+			ctx.String(401, err.Error())
 			ctx.Abort()
 			return
 		}
